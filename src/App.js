@@ -1,26 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+//THIS WILL RENDER ALL PARENT COMPONENTS
+import React, {useEffect, useState} from 'react';
+//useState can store values
+import {getStoryIds} from './services/hnApi';
+import {StoriesContainer} from './containers/StoriesContainer'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export const App = () => {
+
+    return (
+        <StoriesContainer />
+    )
 }
-
-export default App;
