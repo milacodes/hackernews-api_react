@@ -16,10 +16,18 @@ export const getStoryIds = async() => {
             .then(({data}) => data);
     return result;
 }
+const selectedFields = ({id, by, title, time, url} = {}) => ({
+    id,
+    by,
+    title,
+    time,
+    url
+})
 
 export const getSingleStory = async (storyId) => {
     //storyId will be provided when we use this function in the StoriesContainer
-    const story = await axios.get(`${storyUrl}storyId`)
-            .then(({data}) => data);
+    const story = await axios.get(`${storyUrl + storyId}.json`)
+            .then(({data}) => data && selectedFields(data));
+
     return story;
 }

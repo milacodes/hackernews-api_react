@@ -1,7 +1,8 @@
 //THIS CONTAINER WILL GRAB AND RETURN STORY IDS
 
 import React, {useEffect, useState} from 'react';
-import {getStoryIds, getSingleStory} from '../services/hnApi';
+import {getStoryIds} from '../services/hnApi';
+import {Story} from '../components/Story';
 
 
 export const StoriesContainer = () => {
@@ -23,14 +24,11 @@ export const StoriesContainer = () => {
         //our getStoryIds func returns a promise (it was an async func),
         //so we MUST use .then to resolve and get access to our data
         getStoryIds()
-            // .then(data => console.log("Destructured data? ", data))
+            // .then(data => console.log("Destructured data...?", data))
             .then(idsArray => setStoryIds(idsArray))
-
-        getSingleStory('21450654')
-            .then(storyData => console.log(storyData));
     }, []);
 
-    return (
-        <h2>Yo mama, {JSON.stringify(storyIds)}</h2>
+    return storyIds.map(storyId =>
+        <Story key={storyId} id={storyId} />
     )
 }
