@@ -2,7 +2,7 @@
 
 import React, {useState, useEffect} from 'react';
 import {getSingleStory} from '../services/hnApi';
-import {StoryWrapper} from '../styles/StoryStyles.js'
+import {StoryWrapper, StoryTitle, StoryMeta, Bolded} from '../styles/StoryStyles.js'
 
 export const Story = ({id}) => {
     //create a state object called story
@@ -20,9 +20,11 @@ export const Story = ({id}) => {
     return story && story.url ? (
         <React.Fragment>
             <StoryWrapper>
-                <a href={story.url}><h3>{story.title}</h3></a>
-                <h4>By: {story.by}</h4>
-                <p>Posted: {story.time}</p>
+                <StoryTitle href={story.url}><h3>{story.title}</h3></StoryTitle>
+                <StoryMeta>
+                    <span><Bolded>By:</Bolded> {story.by} </span>
+                    <span><Bolded> Posted:</Bolded> {story.time}</span>
+                </StoryMeta>
             </StoryWrapper>
         </React.Fragment>
     )

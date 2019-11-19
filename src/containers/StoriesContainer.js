@@ -3,12 +3,15 @@
 import React, {useEffect, useState} from 'react';
 import {getStoryIds} from '../services/hnApi';
 import {Story} from '../components/Story';
+import { GlobalStyle, StoriesContainerWrapper, PageTitle } from '../styles/StoriesContainerStyles.js'
+import {useInfiniteScroll} from '../hooks/useInfiniteScroll';
 
 
 export const StoriesContainer = () => {
     //first variable (storyIds) is initalized to the empty array ([passed through])
     //to change said variable, must use it's setter, setStoryIds
     const [storyIds, setStoryIds] = useState([]);
+    const test = useInfiniteScroll();
 
 
     //what is UseEffect? It's the new ComponentDidMount!
@@ -28,7 +31,15 @@ export const StoriesContainer = () => {
             .then(idsArray => setStoryIds(idsArray))
     }, []);
 
-    return storyIds.map(storyId =>
-        <Story key={storyId} id={storyId} />
+    return (
+        <>
+            <GlobalStyle />
+            <StoriesContainerWrapper>
+                <PageTitle>Mila's Hacker News Digest</PageTitle>
+                {storyIds.map(storyId =>
+                    <Story key={storyId} id={storyId} />
+                )}
+            </StoriesContainerWrapper>
+        </>
     )
 }
